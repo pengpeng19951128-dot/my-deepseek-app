@@ -6,7 +6,6 @@ st.title("🤖 我的私人 AI 助手")
 
 with st.sidebar:
     st.header("设置")
-    # 填入你 DeepSeek 官网那个 sk- 开头的 Key
     api_key = st.text_input("请输入 DeepSeek API Key:", type="password")
 
 if "messages" not in st.session_state:
@@ -24,7 +23,6 @@ if prompt := st.chat_input("输入问题..."):
         with st.chat_message("user"):
             st.markdown(prompt)
         try:
-            # 这里的地址必须是官方的
             client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
             with st.chat_message("assistant"):
                 response_placeholder = st.empty()
@@ -42,5 +40,3 @@ if prompt := st.chat_input("输入问题..."):
             st.session_state.messages.append({"role": "assistant", "content": full_response})
         except Exception as e:
             st.error(f"出错了：{str(e)}")
-streamlit
-openai
